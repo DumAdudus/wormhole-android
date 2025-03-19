@@ -1,18 +1,8 @@
-/* calculated from git commits to give sequential integers */
-
-def getGitVersion() {
-    def process = "git rev-list --count HEAD".execute()
-    def text = process.text
-    if (text == "") {
-        println('git executeable might be unavailable!')
-        return -1
-    } else {
-        return text.toInteger()
-    }
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
 }
-
-def googleVer = getGitVersion()
-
 
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
@@ -22,21 +12,6 @@ if (localPropertiesFile.exists()) {
     }
 }
 
-def flutterRoot = localProperties.getProperty('flutter.sdk')
-if (flutterRoot == null) {
-    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
-}
-
-def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
-if (flutterVersionCode == null) {
-    flutterVersionCode = '1'
-}
-
-def flutterVersionName = localProperties.getProperty('flutter.versionName')
-if (flutterVersionName == null) {
-    flutterVersionName = '1.0'
-}
-
 def keystoreProperties = new Properties()
 def keystorePropertiesFile = rootProject.file('key.properties')
 if (keystorePropertiesFile.exists()) {
@@ -44,13 +19,10 @@ if (keystorePropertiesFile.exists()) {
 }
 
 
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
-
 android {
-    compileSdkVersion 33
-    ndkVersion flutter.ndkVersion
+    compileSdkVersion 35
+    ndkVersion "27.2.12479018"
+    namespace "dumadudus.wormhole"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -66,29 +38,25 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "eu.heili.wormhole"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
-        minSdkVersion 21
-        targetSdkVersion flutter.targetSdkVersion
-        versionCode googleVer
-        versionName flutterVersionName
+        applicationId "dumadudus.wormhole"
+        minSdkVersion 29
+        targetSdkVersion 35
+        versionCode localProperties['versionCode'].toInteger()
+        versionName localProperties['flutter.versionName']
     }
 
     signingConfigs {
         release {
             keyAlias keystoreProperties['keyAlias']
             keyPassword keystoreProperties['keyPassword']
-            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            storeFile file(keystoreProperties['storeFile'])
             storePassword keystoreProperties['storePassword']
         }
     }
 
     buildTypes {
         release {
-            // use debug config if secret files not available
-            signingConfig keystorePropertiesFile.exists() ? signingConfigs.release : signingConfigs.debug
+            signingConfig signingConfigs.release
         }
     }
 
@@ -104,14 +72,11 @@ flutter {
     source '../..'
 }
 
-dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-}
 
 [
-        Debug  : null,
-        Profile: '--release',
-        Release: '--release'
+    Debug  : null,
+    Profile: '--release',
+    Release: '--release'
 ].each {
     def taskPostfix = it.key
     def profileMode = it.value
@@ -122,15 +87,8 @@ dependencies {
     }
     tasks.register("cargoBuild$taskPostfix", Exec) {
         workingDir "../../native"
-        environment ANDROID_NDK_HOME: "$ANDROID_NDK"
         commandLine 'cargo', 'ndk',
-                // the 2 ABIs below are used by real Android devices
-                '-t', 'armeabi-v7a',
                 '-t', 'arm64-v8a',
-                // the below 2 ABIs are usually used for Android simulators,
-                // add or remove these ABIs as needed.
-                '-t', 'x86',
-                '-t', 'x86_64',
                 '-o', '../android/app/src/main/jniLibs', 'build'
         if (profileMode != null) {
             args profileMode

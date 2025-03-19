@@ -1,6 +1,6 @@
 name: wormhole
 description: A magic-wormhole client
-version: 1.1.4
+version: 1.0.0
 publish_to: 'none'
 
 environment:
@@ -19,10 +19,10 @@ dependencies:
   freezed_annotation: ^2.2.0
 
   # file chooser / open / share
-  file_picker: ^6.1.1
-  path_provider: ^2.0.13
-  share_plus: ^7.0.0
-  open_filex: ^4.3.4
+  file_picker: ^9.0.3
+  path_provider: ^2.1.5
+  share_plus: ^10.1.4
+  open_filex: ^4.6.0
 
   # qr scanner/generation
   barcode_widget: ^2.0.4
@@ -31,8 +31,8 @@ dependencies:
   shared_preferences: ^2.0.18 # store key/value pairs on disk
   share_handler: ^0.0.17 # receive share intents from other apps
   vibration: ^1.7.7 # trigger phone vibrations
-  intl: ^0.18.0 # handle translations
-  fluttertoast: ^8.2.1 # fancy toast popups
+  intl: ^0.19.0 # handle translations
+  # fluttertoast: ^8.2.1 # fancy toast popups
   toggle_switch: ^2.0.1
   permission_handler: ^11.1.0
   url_launcher: ^6.1.9
@@ -42,8 +42,12 @@ dependencies:
     git:
       url: https://gitlab.com/lukas-heiligenbrunner/fluttercloseapp.git
       ref: master
-  flutter_zxing: ^1.1.2
+  flutter_zxing: ^1.6.0
   device_info_plus: ^9.0.2
+
+dependency_overrides:
+  win32: ^5.5.4
+  archive: ^3.5.0
 
 dev_dependencies:
   flutter_test:
@@ -68,4 +72,4 @@ flutter_icons:
   android: "ic_launcher"
   ios: true
   image_path: "bitmap.png"
-  min_sdk_android: 21 # android min sdk min:16, default 21
+  min_sdk_android: 30 # android min sdk min:16, default 21

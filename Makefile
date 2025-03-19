@@ -1,12 +1,15 @@
 apk: translation
-	flutter build apk --split-per-abi --release
-	flutter build appbundle
+	# cd android && ./gradlew wrapper --gradle-version=8.12.1
+	# flutter doctor -v
+	flutter build apk --split-per-abi --release --target-platform android-arm64
 
 container-apk:
-	podman run --name=example \
+	docker run --name=wormhole-android \
 		--mount type=bind,source=${PWD},target=/root/wormhole/ \
-		docker.io/luki42/flutter-rust \
-		bash -c "cd /root/wormhole && make apk"
+		-v gradle-cache:/root/.gradle \
+		-v flutter-cache:/root/.pub-cache \
+		flutter-rust:0319 \
+		bash -c "cd /root/wormhole && make clean apk"
 
 linux: translation
 	flutter build linux

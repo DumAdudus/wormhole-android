@@ -1,11 +1,11 @@
 use crate::api::{ErrorType, Events, ServerConfig, TUpdate, Value};
-use crate::wormhole::handler::{gen_handler_dummy, gen_progress_handler, gen_transit_handler};
+use crate::wormhole::handler::{gen_handler_dummy, gen_progress_handler, gen_transit_handler_v2};
 use crate::wormhole::helpers::{gen_app_config, gen_relay_hints};
 use crate::wormhole::path::find_free_filepath;
 use async_std::fs::OpenOptions;
 use flutter_rust_bridge::StreamSink;
-use magic_wormhole::{transfer, transit, Code, Wormhole};
-use std::path::Path;
+use magic_wormhole::{transfer, transit, Code, MailboxConnection, Wormhole};
+use std::path::{Path, PathBuf};
 use std::rc::Rc;
 
 pub async fn request_file_impl(
@@ -31,7 +31,19 @@ pub async fn request_file_impl(
     };
     let appconfig = gen_app_config(&server_config);
 
-    let (_, wormhole) = match Wormhole::connect_with_code(appconfig, Code(passphrase)).await {
+    let mailbox_connection =
+        match MailboxConnection::connect(appconfig, Code(passphrase), true).await {
+            Ok(v) => v,
+            Err(e) => {
+                actions.add(TUpdate::new(
+                    Events::Error,
+                    Value::ErrorValue(ErrorType::ConnectionError, e.to_string()),
+                ));
+                return;
+            }
+        };
+
+    let wormhole = match Wormhole::connect(mailbox_connection).await {
         Ok(v) => v,
         Err(e) => {
             actions.add(TUpdate::new(
@@ -45,7 +57,7 @@ pub async fn request_file_impl(
     let req = match transfer::request_file(
         wormhole,
         relay_hints,
-        transit::Abilities::ALL_ABILITIES,
+        transit::Abilities::ALL,
         gen_handler_dummy(),
     )
     .await
@@ -74,7 +86,8 @@ pub async fn request_file_impl(
      * - If it doesn't, directly accept, but DON'T overwrite any files
      */
 
-    let file_name = match req.filename.file_name() {
+    let path_buf = PathBuf::from(req.file_name());
+    let file_name = match path_buf.file_name() {
         None => {
             actions.add(TUpdate::new(
                 Events::Error,
@@ -115,7 +128,7 @@ pub async fn request_file_impl(
     };
 
     let on_progress = gen_progress_handler(Rc::clone(&actions));
-    let transit_handler = gen_transit_handler(Rc::clone(&actions));
+    let transit_handler = gen_transit_handler_v2(Rc::clone(&actions));
 
     match req
         .accept(transit_handler, on_progress, &mut file, gen_handler_dummy())
