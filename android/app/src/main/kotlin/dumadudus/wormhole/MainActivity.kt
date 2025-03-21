@@ -1,4 +1,4 @@
-package eu.heili.wormhole
+package dumadudus.wormhole
 
 import android.content.Intent
 import androidx.annotation.NonNull;
