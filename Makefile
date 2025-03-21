@@ -15,12 +15,7 @@ linux: translation
 	flutter build linux
 
 codegen:
-	/home/lukas/.cargo/bin/flutter_rust_bridge_codegen \
-	--rust-input native/src/api.rs \
-	--dart-output lib/gen/bridge_generated.dart \
-	--c-output ios/Runner/bridge_generated.h \
-	--dart-decl-output lib/gen/bridge_definitions.dart \
-	--wasm
+	~/.cargo/bin/flutter_rust_bridge_codegen generate
 
 deploy:
 	fastlane deploy
@@ -41,7 +36,7 @@ lint:
 
 clean:
 	flutter clean
-	cd native && cargo clean
+	# cd native && cargo clean
 
 .PHONY: all apk linux get-dep codegen lint clean
 

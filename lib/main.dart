@@ -3,8 +3,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
-import 'gen/ffi.dart';
+import 'rust/api.dart';
 import 'navigation/navigation.dart';
+import 'rust/frb_generated.dart';
 import 'settings/settings.dart';
 import 'theme/dark_theme.dart';
 import 'theme/light_theme.dart';
@@ -32,8 +33,9 @@ class _MyAppState extends State<MyApp> {
   }
 
   void initBackend() async {
+    await RustLib.init();
     final tempDir = (await getTemporaryDirectory()).path;
-    api.init(tempFilePath: tempDir);
+    init(tempFilePath: tempDir);
   }
 
   void getCurrentAppTheme() async {
