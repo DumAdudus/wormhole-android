@@ -5,6 +5,7 @@ import '../../rust/api.dart';
 import '../../rust/wormhole/types/value.dart';
 import '../../rust/wormhole/types/t_update.dart';
 import '../../utils/file_formatter.dart';
+import '../../utils/log.dart';
 import '../type_helpers.dart';
 
 class TransferProgress extends StatelessWidget {
@@ -43,7 +44,7 @@ class TransferProgress extends StatelessWidget {
             child: LinearProgressIndicator(
               minHeight: 10,
               value: percent,
-              color: theme.colorScheme.secondary,
+              color: Colors.green,
             ),
           ),
           if (linkType != null) ...[

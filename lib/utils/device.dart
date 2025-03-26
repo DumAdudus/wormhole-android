@@ -1,6 +1,8 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
+import 'log.dart';
+
 enum DeviceType { phone, tablet }
 
 DeviceType getDeviceType(BuildContext ctx) {
@@ -11,7 +13,7 @@ DeviceType getDeviceType(BuildContext ctx) {
 /// set default device orientation dependent if phone/tablet
 Future<void> setPrefferedAppOrientation({required BuildContext ctx}) async {
   final deviceType = getDeviceType(ctx);
-  debugPrint('Device is a: ${deviceType.name}');
+  logger.config('Device is a: ${deviceType.name}');
 
   switch (deviceType) {
     case DeviceType.phone:

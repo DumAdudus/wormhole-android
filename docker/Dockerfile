@@ -1,18 +1,20 @@
-FROM ghcr.io/cirruslabs/flutter:latest
+FROM ghcr.io/cirruslabs/flutter:3.27.1
 
-ENV ANDROID_NDK_VERSION 24.0.8215888
+ENV ANDROID_NDK_VERSION 27.2.12479018
 ENV PATH="/root/.cargo/bin:$PATH"
+ENV ANDROID_NDK_HOME=/opt/android-sdk-linux/ndk/$ANDROID_NDK_VERSION
 
+RUN yes | sdkmanager "ndk;$ANDROID_NDK_VERSION" \
+    "cmake;3.22.1" \
+    "build-tools;30.0.3" \
+    "build-tools;33.0.1" \
+    "build-tools;35.0.0" \
+    "platforms;android-31" \
+    "platforms;android-33" \
+    "platforms;android-35"
 
-RUN yes | sdkmanager "ndk;$ANDROID_NDK_VERSION"
-
-RUN echo "INPUT(-lunwind)" > /opt/android-sdk-linux/ndk/$ANDROID_NDK_VERSION/toolchains/llvm/prebuilt/linux-x86_64/lib64/clang/14.0.1/lib/linux/aarch64/libgcc.a
-RUN echo "INPUT(-lunwind)" > /opt/android-sdk-linux/ndk/$ANDROID_NDK_VERSION/toolchains/llvm/prebuilt/linux-x86_64/lib64/clang/14.0.1/lib/linux/arm/libgcc.a
-RUN echo "INPUT(-lunwind)" > /opt/android-sdk-linux/ndk/$ANDROID_NDK_VERSION/toolchains/llvm/prebuilt/linux-x86_64/lib64/clang/14.0.1/lib/linux/i386/libgcc.a
-RUN echo "INPUT(-lunwind)" > /opt/android-sdk-linux/ndk/$ANDROID_NDK_VERSION/toolchains/llvm/prebuilt/linux-x86_64/lib64/clang/14.0.1/lib/linux/x86_64/libgcc.a
-
-RUN curl https://sh.rustup.rs -sSf | sh -s -- -y \
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y --profile minimal --target aarch64-linux-android \
     && . "$HOME/.cargo/env" \
-    && rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android \
-    && echo "export ANDROID_NDK_HOME=/opt/android-sdk-linux/ndk/$ANDROID_NDK_VERSION" >> $HOME/.bashrc \
-    && cargo install cargo-ndk
+    && cargo install cargo-ndk flutter_rust_bridge_codegen cargo-expand
+
+VOLUME /root/.pub-cache /root/.gradle

@@ -1,8 +1,9 @@
 use crate::api::{ErrorType, Events, ServerConfig, TUpdate, Value};
-use crate::wormhole::handler::{gen_handler_dummy, gen_progress_handler, gen_transit_handler_v2};
+use crate::frb_generated::StreamSink;
+use crate::wormhole::handler::{gen_handler_dummy, gen_progress_handler, gen_transit_handler};
 use crate::wormhole::helpers::{gen_app_config, gen_relay_hints};
 use crate::wormhole::zip::create_zip_file;
-use crate::frb_generated::StreamSink;
+use log::debug;
 use magic_wormhole::transfer::TransferError;
 use magic_wormhole::{transfer, transit, MailboxConnection, Wormhole};
 use std::collections::HashMap;
@@ -20,7 +21,7 @@ pub async fn send_files_impl(
     let temp_file = match create_zip_file(files, temp_file_path, actions.clone()) {
         Ok(v) => v,
         Err(e) => {
-            actions.add(TUpdate::new(
+            let _ = actions.add(TUpdate::new(
                 Events::Error,
                 Value::ErrorValue(ErrorType::ZipFileError, e.to_string()),
             ));
@@ -49,12 +50,12 @@ pub async fn send_file_impl(
     actions: Rc<StreamSink<TUpdate>>,
 ) {
     // push event that we are in connection state
-    actions.add(TUpdate::new(Events::Connecting, Value::Int(0)));
+    let _ = actions.add(TUpdate::new(Events::Connecting, Value::Int(0)));
 
     let relay_hints = match gen_relay_hints(&server_config) {
         Ok(v) => v,
         Err(_) => {
-            actions.add(TUpdate::new(
+            let _ = actions.add(TUpdate::new(
                 Events::Error,
                 Value::Error(ErrorType::ConnectionError),
             ));
@@ -67,7 +68,7 @@ pub async fn send_file_impl(
     {
         Ok(v) => v,
         Err(e) => {
-            actions.add(TUpdate::new(
+            let _ = actions.add(TUpdate::new(
                 Events::Error,
                 Value::ErrorValue(ErrorType::ConnectionError, e.to_string()),
             ));
@@ -76,22 +77,23 @@ pub async fn send_file_impl(
     };
 
     let code = mailbox_connection.code().clone();
+    debug!("code generated: {}", code);
+
+    let _ = actions.add(TUpdate::new(
+        Events::Code,
+        Value::String(format!("{}", code)),
+    ));
 
     let wormhole = match Wormhole::connect(mailbox_connection).await {
         Ok(v) => v,
         Err(e) => {
-            actions.add(TUpdate::new(
+            let _ = actions.add(TUpdate::new(
                 Events::Error,
                 Value::ErrorValue(ErrorType::TransferConnectionError, e.to_string()),
             ));
             return;
         }
     };
-
-    actions.add(TUpdate::new(
-        Events::Code,
-        Value::String(format!("{}", code)),
-    ));
 
     match Box::pin(send(
         wormhole,
@@ -105,14 +107,14 @@ pub async fn send_file_impl(
     {
         Ok(_) => (),
         Err(e) => {
-            actions.add(TUpdate::new(
+            let _ = actions.add(TUpdate::new(
                 Events::Error,
                 Value::ErrorValue(ErrorType::TransferError, e.to_string()),
             ));
             return;
         }
     };
-    actions.add(TUpdate::new(Events::Finished, Value::String(file_name)));
+    let _ = actions.add(TUpdate::new(Events::Finished, Value::String(file_name)));
 }
 
 async fn send(
@@ -124,7 +126,7 @@ async fn send(
     actions: Rc<StreamSink<TUpdate>>,
 ) -> Result<(), TransferError> {
     let handler = gen_handler_dummy();
-    let transit_handler = gen_transit_handler_v2(Rc::clone(&actions));
+    let transit_handler = gen_transit_handler(Rc::clone(&actions));
     let progress_handler = gen_progress_handler(Rc::clone(&actions));
 
     transfer::send_file_or_folder(

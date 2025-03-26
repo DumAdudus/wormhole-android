@@ -1,28 +1,31 @@
 [package]
-name = "wormhole-rs"
+name = "wormhole"
 version = "1.1.4"
 edition = "2021"
 
 [lib]
-crate-type = ["staticlib"]
+crate-type = ["cdylib", "staticlib"]
 
 [dependencies]
-anyhow = "1.0.71"
-flutter_rust_bridge = "=2.9.0"
-magic-wormhole = "0.7.5"
-futures = "0.3.31"
+anyhow = "1.0.97"
 async-std = "1.13.1"
-url = { version = "2.3.1", features = ["serde"] }
-zip = { version = "0.6.4", default-features = false, features = ["deflate"] }
-macros = { path = "macros", version = "1" }
 fastrand = "2.3.0"
+flutter_rust_bridge = "=2.9.0"
+futures = "0.3.31"
+macros = { path = "macros", version = "1" }
+magic-wormhole = "0.7.5"
+url = { version = "2.5.4", features = ["serde"] }
+zip = { version = "2.5.0", default-features = false, features = ["deflate"] }
+log = "0.4.26"
+
+[target.'cfg(target_os = "android")'.dependencies]
+android_logger = "0.15.0"
+[target.'cfg(not(target_os = "android"))'.dependencies]
+env_logger = "0.11.7"
 
 [profile.release]
-opt-level = 3       # Optimize for size.
-lto = true          # Enable Link Time Optimization
-codegen-units = 1   # Reduce number of codegen units to increase optimizations.
-panic = 'abort'     # Abort on panic
-strip = true        # Strip symbols from binary*
-
-[patch.crates-io]
-time = {git = "https://github.com/time-rs/time", tag = "v0.3.35"}
+opt-level = 3     # Optimize for size.
+lto = 'thin'      # Enable Link Time Optimization
+codegen-units = 8 # Reduce number of codegen units to increase optimizations.
+panic = 'abort'   # Abort on panic
+strip = true      # Strip symbols from binary*

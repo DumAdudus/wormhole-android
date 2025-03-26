@@ -5,6 +5,7 @@ publish_to: 'none'
 
 environment:
   sdk: ">=3.6.0"
+  flutter: '>= 3.22.0'
 
 dependencies:
   flutter:
@@ -15,7 +16,7 @@ dependencies:
   # flutter rust interop
   ffi: ^2.1.3
   flutter_rust_bridge: ^2.9.0
-  freezed_annotation: ^2.4.4
+  freezed_annotation: ^3.0.0
 
   # file chooser / open / share
   file_picker: ^9.0.3
@@ -42,35 +43,28 @@ dependencies:
       url: https://gitlab.com/lukas-heiligenbrunner/fluttercloseapp.git
       ref: master
   flutter_zxing: ^1.6.0
-  device_info_plus: ^10.0.1
+  device_info_plus: ^11.2.0
   rust_lib_wormhole:
     path: rust_builder
-  
-# dependency_overrides:
-  # win32: ^5.5.4
-  # archive: ^3.5.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^3.0.1
-  ffigen: ^14.0.0
+  flutter_lints: ^5.0.0
+  ffigen: ^15.0.0
   flutter_launcher_icons:
   build_runner:
-  freezed: ^2.5.8
+  freezed: ^3.0.4
 
 # The following section is specific to Flutter packages.
 flutter:
-  # auto generate translations
   generate: true
-
-  # include material icons
   uses-material-design: true
 
 # app icon generation
-flutter_icons:
+flutter_launcher_icons:
   android: "ic_launcher"
   ios: true
   image_path: "bitmap.png"
-  min_sdk_android: 30 # android min sdk min:16, default 21
+  min_sdk_android: 29

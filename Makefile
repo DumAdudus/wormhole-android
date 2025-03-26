@@ -1,7 +1,7 @@
 apk: translation
 	# cd android && ./gradlew wrapper --gradle-version=8.12.1
 	# flutter doctor -v
-	flutter build apk --split-per-abi --release --target-platform android-arm64
+	flutter build apk --target-platform android-arm64 --split-per-abi --release 
 
 container-apk:
 	docker run --name=wormhole-android \

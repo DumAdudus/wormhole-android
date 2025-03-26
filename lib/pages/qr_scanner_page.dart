@@ -8,6 +8,7 @@ import '../navigation/back_pop_context.dart';
 import '../navigation/navigation_provider.dart';
 import '../transfer/transfer_provider.dart';
 import '../utils/code.dart';
+import '../utils/log.dart';
 import 'toasts/error_toast.dart';
 
 class QrScannerPage extends StatelessWidget {
@@ -15,7 +16,7 @@ class QrScannerPage extends StatelessWidget {
 
   void _onQrDetect(String? code, BuildContext context) async {
     if (code != null) {
-      debugPrint('Barcode found! $code');
+      logger.config('Barcode found! $code');
       Vibration.vibrate();
 
       final uri = Uri.parse(code);
@@ -36,7 +37,7 @@ class QrScannerPage extends StatelessWidget {
       ErrorToast(message: AppLocalizations.of(context)!.toast_error_qr_invalid)
           .show(context);
     } else {
-      debugPrint('Failed to scan Barcode');
+      logger.warning('Failed to scan Barcode');
       Provider.of<NavigationProvider>(context, listen: false).pop();
       ErrorToast(message: AppLocalizations.of(context)!.toast_error_qr_fail)
           .show(context);
@@ -48,6 +49,10 @@ class QrScannerPage extends StatelessWidget {
     return BackPopContext(
       child: ReaderWidget(
         tryInverted: true,
+        showGallery: false,
+        showFlashlight: false,
+        showToggleCamera: false,
+        cropPercent: 0.8,
         onScan: (result) async {
           _onQrDetect(result.text, context);
         },

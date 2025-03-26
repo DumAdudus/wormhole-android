@@ -5,7 +5,7 @@ use std::fs::{metadata, File};
 use std::io::{Read, Write};
 use std::path::{Path, PathBuf};
 use std::rc::Rc;
-use zip::write::FileOptions;
+use zip::write::SimpleFileOptions;
 use zip::CompressionMethod;
 
 fn _list_files(vec: &mut Vec<PathBuf>, path: &Path) -> anyhow::Result<()> {
@@ -60,12 +60,12 @@ pub fn create_zip_file(
 
     let file = File::create(temp_file.clone())?;
     let mut zip = zip::ZipWriter::new(file);
-    let options = FileOptions::default()
+    let options = SimpleFileOptions::default()
         .compression_method(CompressionMethod::Deflated)
         .unix_permissions(0o755);
 
     // send zip start event + nr of total files
-    actions.add(TUpdate::new(
+    let _ = actions.add(TUpdate::new(
         Events::ZipFilesTotal,
         Value::Int(files.len() as i32),
     ));
@@ -75,7 +75,7 @@ pub fn create_zip_file(
     let mut file_counter = 1;
     // zip files
     for (fs_path, zip_path) in files.into_iter() {
-        actions.add(TUpdate::new(Events::ZipFiles, Value::Int(file_counter)));
+        let _ = actions.add(TUpdate::new(Events::ZipFiles, Value::Int(file_counter)));
         file_counter += 1;
 
         zip.start_file(zip_path, options)?;

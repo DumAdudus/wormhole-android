@@ -11,7 +11,7 @@ class BackPopContext extends StatelessWidget {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
-      onPopInvoked: (didPop) {
+      onPopInvokedWithResult: (didPop, _) {
         Provider.of<NavigationProvider>(context, listen: false).pop();
       },
       child: child,

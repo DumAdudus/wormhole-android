@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../transfer/transfer_provider.dart';
 import '../widgets/icon_text_button.dart';
+import '../utils/log.dart';
 
 class SendPage extends StatefulWidget {
   const SendPage({super.key});
@@ -27,7 +28,7 @@ class _SendPageState extends State<SendPage> {
           files.first.name,
           files.map((e) => e.path).whereType<String>().toList());
     } else {
-      debugPrint('user canceled picker');
+      logger.config('user canceled picker');
     }
   }
 
@@ -39,7 +40,7 @@ class _SendPageState extends State<SendPage> {
       Provider.of<TransferProvider>(context, listen: false)
           .sendFolder(result.split('/').last, result);
     } else {
-      debugPrint('user canceled picker');
+      logger.config('user canceled picker');
     }
   }
 

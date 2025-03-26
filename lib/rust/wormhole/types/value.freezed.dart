@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,120 +10,92 @@ part of 'value.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$Value {
-  Object get field0 => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int field0) int,
-    required TResult Function(String field0) string,
-    required TResult Function(ErrorType field0, String field1) errorValue,
-    required TResult Function(ErrorType field0) error,
-    required TResult Function(ConnectionType field0, String field1)
-        connectionType,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int field0)? int,
-    TResult? Function(String field0)? string,
-    TResult? Function(ErrorType field0, String field1)? errorValue,
-    TResult? Function(ErrorType field0)? error,
-    TResult? Function(ConnectionType field0, String field1)? connectionType,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int field0)? int,
-    TResult Function(String field0)? string,
-    TResult Function(ErrorType field0, String field1)? errorValue,
-    TResult Function(ErrorType field0)? error,
-    TResult Function(ConnectionType field0, String field1)? connectionType,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Value_Int value) int,
-    required TResult Function(Value_String value) string,
-    required TResult Function(Value_ErrorValue value) errorValue,
-    required TResult Function(Value_Error value) error,
-    required TResult Function(Value_ConnectionType value) connectionType,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Value_Int value)? int,
-    TResult? Function(Value_String value)? string,
-    TResult? Function(Value_ErrorValue value)? errorValue,
-    TResult? Function(Value_Error value)? error,
-    TResult? Function(Value_ConnectionType value)? connectionType,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Value_Int value)? int,
-    TResult Function(Value_String value)? string,
-    TResult Function(Value_ErrorValue value)? errorValue,
-    TResult Function(Value_Error value)? error,
-    TResult Function(Value_ConnectionType value)? connectionType,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  Object get field0;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Value &&
+            const DeepCollectionEquality().equals(other.field0, field0));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(field0));
+
+  @override
+  String toString() {
+    return 'Value(field0: $field0)';
+  }
 }
 
 /// @nodoc
-abstract class $ValueCopyWith<$Res> {
-  factory $ValueCopyWith(Value value, $Res Function(Value) then) =
-      _$ValueCopyWithImpl<$Res, Value>;
+class $ValueCopyWith<$Res> {
+  $ValueCopyWith(Value _, $Res Function(Value) __);
 }
 
 /// @nodoc
-class _$ValueCopyWithImpl<$Res, $Val extends Value>
-    implements $ValueCopyWith<$Res> {
-  _$ValueCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+class Value_Int extends Value {
+  const Value_Int(this.field0) : super._();
+
+  @override
+  final int field0;
 
   /// Create a copy of Value
   /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $Value_IntCopyWith<Value_Int> get copyWith =>
+      _$Value_IntCopyWithImpl<Value_Int>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Value_Int &&
+            (identical(other.field0, field0) || other.field0 == field0));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, field0);
+
+  @override
+  String toString() {
+    return 'Value.int(field0: $field0)';
+  }
 }
 
 /// @nodoc
-abstract class _$$Value_IntImplCopyWith<$Res> {
-  factory _$$Value_IntImplCopyWith(
-          _$Value_IntImpl value, $Res Function(_$Value_IntImpl) then) =
-      __$$Value_IntImplCopyWithImpl<$Res>;
+abstract mixin class $Value_IntCopyWith<$Res> implements $ValueCopyWith<$Res> {
+  factory $Value_IntCopyWith(Value_Int value, $Res Function(Value_Int) _then) =
+      _$Value_IntCopyWithImpl;
   @useResult
   $Res call({int field0});
 }
 
 /// @nodoc
-class __$$Value_IntImplCopyWithImpl<$Res>
-    extends _$ValueCopyWithImpl<$Res, _$Value_IntImpl>
-    implements _$$Value_IntImplCopyWith<$Res> {
-  __$$Value_IntImplCopyWithImpl(
-      _$Value_IntImpl _value, $Res Function(_$Value_IntImpl) _then)
-      : super(_value, _then);
+class _$Value_IntCopyWithImpl<$Res> implements $Value_IntCopyWith<$Res> {
+  _$Value_IntCopyWithImpl(this._self, this._then);
+
+  final Value_Int _self;
+  final $Res Function(Value_Int) _then;
 
   /// Create a copy of Value
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? field0 = null,
   }) {
-    return _then(_$Value_IntImpl(
+    return _then(Value_Int(
       null == field0
-          ? _value.field0
+          ? _self.field0
           : field0 // ignore: cast_nullable_to_non_nullable
               as int,
     ));
@@ -131,326 +104,63 @@ class __$$Value_IntImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Value_IntImpl extends Value_Int {
-  const _$Value_IntImpl(this.field0) : super._();
+class Value_String extends Value {
+  const Value_String(this.field0) : super._();
 
   @override
-  final int field0;
+  final String field0;
 
-  @override
-  String toString() {
-    return 'Value.int(field0: $field0)';
-  }
+  /// Create a copy of Value
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $Value_StringCopyWith<Value_String> get copyWith =>
+      _$Value_StringCopyWithImpl<Value_String>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$Value_IntImpl &&
+            other is Value_String &&
             (identical(other.field0, field0) || other.field0 == field0));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, field0);
-
-  /// Create a copy of Value
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$Value_IntImplCopyWith<_$Value_IntImpl> get copyWith =>
-      __$$Value_IntImplCopyWithImpl<_$Value_IntImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int field0) int,
-    required TResult Function(String field0) string,
-    required TResult Function(ErrorType field0, String field1) errorValue,
-    required TResult Function(ErrorType field0) error,
-    required TResult Function(ConnectionType field0, String field1)
-        connectionType,
-  }) {
-    return int(field0);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int field0)? int,
-    TResult? Function(String field0)? string,
-    TResult? Function(ErrorType field0, String field1)? errorValue,
-    TResult? Function(ErrorType field0)? error,
-    TResult? Function(ConnectionType field0, String field1)? connectionType,
-  }) {
-    return int?.call(field0);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int field0)? int,
-    TResult Function(String field0)? string,
-    TResult Function(ErrorType field0, String field1)? errorValue,
-    TResult Function(ErrorType field0)? error,
-    TResult Function(ConnectionType field0, String field1)? connectionType,
-    required TResult orElse(),
-  }) {
-    if (int != null) {
-      return int(field0);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Value_Int value) int,
-    required TResult Function(Value_String value) string,
-    required TResult Function(Value_ErrorValue value) errorValue,
-    required TResult Function(Value_Error value) error,
-    required TResult Function(Value_ConnectionType value) connectionType,
-  }) {
-    return int(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Value_Int value)? int,
-    TResult? Function(Value_String value)? string,
-    TResult? Function(Value_ErrorValue value)? errorValue,
-    TResult? Function(Value_Error value)? error,
-    TResult? Function(Value_ConnectionType value)? connectionType,
-  }) {
-    return int?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Value_Int value)? int,
-    TResult Function(Value_String value)? string,
-    TResult Function(Value_ErrorValue value)? errorValue,
-    TResult Function(Value_Error value)? error,
-    TResult Function(Value_ConnectionType value)? connectionType,
-    required TResult orElse(),
-  }) {
-    if (int != null) {
-      return int(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class Value_Int extends Value {
-  const factory Value_Int(final int field0) = _$Value_IntImpl;
-  const Value_Int._() : super._();
-
-  @override
-  int get field0;
-
-  /// Create a copy of Value
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$Value_IntImplCopyWith<_$Value_IntImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$Value_StringImplCopyWith<$Res> {
-  factory _$$Value_StringImplCopyWith(
-          _$Value_StringImpl value, $Res Function(_$Value_StringImpl) then) =
-      __$$Value_StringImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String field0});
-}
-
-/// @nodoc
-class __$$Value_StringImplCopyWithImpl<$Res>
-    extends _$ValueCopyWithImpl<$Res, _$Value_StringImpl>
-    implements _$$Value_StringImplCopyWith<$Res> {
-  __$$Value_StringImplCopyWithImpl(
-      _$Value_StringImpl _value, $Res Function(_$Value_StringImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of Value
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? field0 = null,
-  }) {
-    return _then(_$Value_StringImpl(
-      null == field0
-          ? _value.field0
-          : field0 // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$Value_StringImpl extends Value_String {
-  const _$Value_StringImpl(this.field0) : super._();
-
-  @override
-  final String field0;
 
   @override
   String toString() {
     return 'Value.string(field0: $field0)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$Value_StringImpl &&
-            (identical(other.field0, field0) || other.field0 == field0));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, field0);
-
-  /// Create a copy of Value
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$Value_StringImplCopyWith<_$Value_StringImpl> get copyWith =>
-      __$$Value_StringImplCopyWithImpl<_$Value_StringImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int field0) int,
-    required TResult Function(String field0) string,
-    required TResult Function(ErrorType field0, String field1) errorValue,
-    required TResult Function(ErrorType field0) error,
-    required TResult Function(ConnectionType field0, String field1)
-        connectionType,
-  }) {
-    return string(field0);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int field0)? int,
-    TResult? Function(String field0)? string,
-    TResult? Function(ErrorType field0, String field1)? errorValue,
-    TResult? Function(ErrorType field0)? error,
-    TResult? Function(ConnectionType field0, String field1)? connectionType,
-  }) {
-    return string?.call(field0);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int field0)? int,
-    TResult Function(String field0)? string,
-    TResult Function(ErrorType field0, String field1)? errorValue,
-    TResult Function(ErrorType field0)? error,
-    TResult Function(ConnectionType field0, String field1)? connectionType,
-    required TResult orElse(),
-  }) {
-    if (string != null) {
-      return string(field0);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Value_Int value) int,
-    required TResult Function(Value_String value) string,
-    required TResult Function(Value_ErrorValue value) errorValue,
-    required TResult Function(Value_Error value) error,
-    required TResult Function(Value_ConnectionType value) connectionType,
-  }) {
-    return string(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Value_Int value)? int,
-    TResult? Function(Value_String value)? string,
-    TResult? Function(Value_ErrorValue value)? errorValue,
-    TResult? Function(Value_Error value)? error,
-    TResult? Function(Value_ConnectionType value)? connectionType,
-  }) {
-    return string?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Value_Int value)? int,
-    TResult Function(Value_String value)? string,
-    TResult Function(Value_ErrorValue value)? errorValue,
-    TResult Function(Value_Error value)? error,
-    TResult Function(Value_ConnectionType value)? connectionType,
-    required TResult orElse(),
-  }) {
-    if (string != null) {
-      return string(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class Value_String extends Value {
-  const factory Value_String(final String field0) = _$Value_StringImpl;
-  const Value_String._() : super._();
-
-  @override
-  String get field0;
-
-  /// Create a copy of Value
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$Value_StringImplCopyWith<_$Value_StringImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$Value_ErrorValueImplCopyWith<$Res> {
-  factory _$$Value_ErrorValueImplCopyWith(_$Value_ErrorValueImpl value,
-          $Res Function(_$Value_ErrorValueImpl) then) =
-      __$$Value_ErrorValueImplCopyWithImpl<$Res>;
+abstract mixin class $Value_StringCopyWith<$Res>
+    implements $ValueCopyWith<$Res> {
+  factory $Value_StringCopyWith(
+          Value_String value, $Res Function(Value_String) _then) =
+      _$Value_StringCopyWithImpl;
   @useResult
-  $Res call({ErrorType field0, String field1});
+  $Res call({String field0});
 }
 
 /// @nodoc
-class __$$Value_ErrorValueImplCopyWithImpl<$Res>
-    extends _$ValueCopyWithImpl<$Res, _$Value_ErrorValueImpl>
-    implements _$$Value_ErrorValueImplCopyWith<$Res> {
-  __$$Value_ErrorValueImplCopyWithImpl(_$Value_ErrorValueImpl _value,
-      $Res Function(_$Value_ErrorValueImpl) _then)
-      : super(_value, _then);
+class _$Value_StringCopyWithImpl<$Res> implements $Value_StringCopyWith<$Res> {
+  _$Value_StringCopyWithImpl(this._self, this._then);
+
+  final Value_String _self;
+  final $Res Function(Value_String) _then;
 
   /// Create a copy of Value
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? field0 = null,
-    Object? field1 = null,
   }) {
-    return _then(_$Value_ErrorValueImpl(
+    return _then(Value_String(
       null == field0
-          ? _value.field0
+          ? _self.field0
           : field0 // ignore: cast_nullable_to_non_nullable
-              as ErrorType,
-      null == field1
-          ? _value.field1
-          : field1 // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -458,331 +168,70 @@ class __$$Value_ErrorValueImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Value_ErrorValueImpl extends Value_ErrorValue {
-  const _$Value_ErrorValueImpl(this.field0, this.field1) : super._();
+class Value_ErrorValue extends Value {
+  const Value_ErrorValue(this.field0, this.field1) : super._();
 
   @override
   final ErrorType field0;
-  @override
   final String field1;
+
+  /// Create a copy of Value
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $Value_ErrorValueCopyWith<Value_ErrorValue> get copyWith =>
+      _$Value_ErrorValueCopyWithImpl<Value_ErrorValue>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Value_ErrorValue &&
+            (identical(other.field0, field0) || other.field0 == field0) &&
+            (identical(other.field1, field1) || other.field1 == field1));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, field0, field1);
 
   @override
   String toString() {
     return 'Value.errorValue(field0: $field0, field1: $field1)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$Value_ErrorValueImpl &&
-            (identical(other.field0, field0) || other.field0 == field0) &&
-            (identical(other.field1, field1) || other.field1 == field1));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, field0, field1);
-
-  /// Create a copy of Value
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$Value_ErrorValueImplCopyWith<_$Value_ErrorValueImpl> get copyWith =>
-      __$$Value_ErrorValueImplCopyWithImpl<_$Value_ErrorValueImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int field0) int,
-    required TResult Function(String field0) string,
-    required TResult Function(ErrorType field0, String field1) errorValue,
-    required TResult Function(ErrorType field0) error,
-    required TResult Function(ConnectionType field0, String field1)
-        connectionType,
-  }) {
-    return errorValue(field0, field1);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int field0)? int,
-    TResult? Function(String field0)? string,
-    TResult? Function(ErrorType field0, String field1)? errorValue,
-    TResult? Function(ErrorType field0)? error,
-    TResult? Function(ConnectionType field0, String field1)? connectionType,
-  }) {
-    return errorValue?.call(field0, field1);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int field0)? int,
-    TResult Function(String field0)? string,
-    TResult Function(ErrorType field0, String field1)? errorValue,
-    TResult Function(ErrorType field0)? error,
-    TResult Function(ConnectionType field0, String field1)? connectionType,
-    required TResult orElse(),
-  }) {
-    if (errorValue != null) {
-      return errorValue(field0, field1);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Value_Int value) int,
-    required TResult Function(Value_String value) string,
-    required TResult Function(Value_ErrorValue value) errorValue,
-    required TResult Function(Value_Error value) error,
-    required TResult Function(Value_ConnectionType value) connectionType,
-  }) {
-    return errorValue(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Value_Int value)? int,
-    TResult? Function(Value_String value)? string,
-    TResult? Function(Value_ErrorValue value)? errorValue,
-    TResult? Function(Value_Error value)? error,
-    TResult? Function(Value_ConnectionType value)? connectionType,
-  }) {
-    return errorValue?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Value_Int value)? int,
-    TResult Function(Value_String value)? string,
-    TResult Function(Value_ErrorValue value)? errorValue,
-    TResult Function(Value_Error value)? error,
-    TResult Function(Value_ConnectionType value)? connectionType,
-    required TResult orElse(),
-  }) {
-    if (errorValue != null) {
-      return errorValue(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class Value_ErrorValue extends Value {
-  const factory Value_ErrorValue(final ErrorType field0, final String field1) =
-      _$Value_ErrorValueImpl;
-  const Value_ErrorValue._() : super._();
-
-  @override
-  ErrorType get field0;
-  String get field1;
-
-  /// Create a copy of Value
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$Value_ErrorValueImplCopyWith<_$Value_ErrorValueImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$Value_ErrorImplCopyWith<$Res> {
-  factory _$$Value_ErrorImplCopyWith(
-          _$Value_ErrorImpl value, $Res Function(_$Value_ErrorImpl) then) =
-      __$$Value_ErrorImplCopyWithImpl<$Res>;
+abstract mixin class $Value_ErrorValueCopyWith<$Res>
+    implements $ValueCopyWith<$Res> {
+  factory $Value_ErrorValueCopyWith(
+          Value_ErrorValue value, $Res Function(Value_ErrorValue) _then) =
+      _$Value_ErrorValueCopyWithImpl;
   @useResult
-  $Res call({ErrorType field0});
+  $Res call({ErrorType field0, String field1});
 }
 
 /// @nodoc
-class __$$Value_ErrorImplCopyWithImpl<$Res>
-    extends _$ValueCopyWithImpl<$Res, _$Value_ErrorImpl>
-    implements _$$Value_ErrorImplCopyWith<$Res> {
-  __$$Value_ErrorImplCopyWithImpl(
-      _$Value_ErrorImpl _value, $Res Function(_$Value_ErrorImpl) _then)
-      : super(_value, _then);
+class _$Value_ErrorValueCopyWithImpl<$Res>
+    implements $Value_ErrorValueCopyWith<$Res> {
+  _$Value_ErrorValueCopyWithImpl(this._self, this._then);
+
+  final Value_ErrorValue _self;
+  final $Res Function(Value_ErrorValue) _then;
 
   /// Create a copy of Value
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? field0 = null,
-  }) {
-    return _then(_$Value_ErrorImpl(
-      null == field0
-          ? _value.field0
-          : field0 // ignore: cast_nullable_to_non_nullable
-              as ErrorType,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$Value_ErrorImpl extends Value_Error {
-  const _$Value_ErrorImpl(this.field0) : super._();
-
-  @override
-  final ErrorType field0;
-
-  @override
-  String toString() {
-    return 'Value.error(field0: $field0)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$Value_ErrorImpl &&
-            (identical(other.field0, field0) || other.field0 == field0));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, field0);
-
-  /// Create a copy of Value
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$Value_ErrorImplCopyWith<_$Value_ErrorImpl> get copyWith =>
-      __$$Value_ErrorImplCopyWithImpl<_$Value_ErrorImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int field0) int,
-    required TResult Function(String field0) string,
-    required TResult Function(ErrorType field0, String field1) errorValue,
-    required TResult Function(ErrorType field0) error,
-    required TResult Function(ConnectionType field0, String field1)
-        connectionType,
-  }) {
-    return error(field0);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int field0)? int,
-    TResult? Function(String field0)? string,
-    TResult? Function(ErrorType field0, String field1)? errorValue,
-    TResult? Function(ErrorType field0)? error,
-    TResult? Function(ConnectionType field0, String field1)? connectionType,
-  }) {
-    return error?.call(field0);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int field0)? int,
-    TResult Function(String field0)? string,
-    TResult Function(ErrorType field0, String field1)? errorValue,
-    TResult Function(ErrorType field0)? error,
-    TResult Function(ConnectionType field0, String field1)? connectionType,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(field0);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Value_Int value) int,
-    required TResult Function(Value_String value) string,
-    required TResult Function(Value_ErrorValue value) errorValue,
-    required TResult Function(Value_Error value) error,
-    required TResult Function(Value_ConnectionType value) connectionType,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Value_Int value)? int,
-    TResult? Function(Value_String value)? string,
-    TResult? Function(Value_ErrorValue value)? errorValue,
-    TResult? Function(Value_Error value)? error,
-    TResult? Function(Value_ConnectionType value)? connectionType,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Value_Int value)? int,
-    TResult Function(Value_String value)? string,
-    TResult Function(Value_ErrorValue value)? errorValue,
-    TResult Function(Value_Error value)? error,
-    TResult Function(Value_ConnectionType value)? connectionType,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class Value_Error extends Value {
-  const factory Value_Error(final ErrorType field0) = _$Value_ErrorImpl;
-  const Value_Error._() : super._();
-
-  @override
-  ErrorType get field0;
-
-  /// Create a copy of Value
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$Value_ErrorImplCopyWith<_$Value_ErrorImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$Value_ConnectionTypeImplCopyWith<$Res> {
-  factory _$$Value_ConnectionTypeImplCopyWith(_$Value_ConnectionTypeImpl value,
-          $Res Function(_$Value_ConnectionTypeImpl) then) =
-      __$$Value_ConnectionTypeImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({ConnectionType field0, String field1});
-}
-
-/// @nodoc
-class __$$Value_ConnectionTypeImplCopyWithImpl<$Res>
-    extends _$ValueCopyWithImpl<$Res, _$Value_ConnectionTypeImpl>
-    implements _$$Value_ConnectionTypeImplCopyWith<$Res> {
-  __$$Value_ConnectionTypeImplCopyWithImpl(_$Value_ConnectionTypeImpl _value,
-      $Res Function(_$Value_ConnectionTypeImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of Value
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? field0 = null,
     Object? field1 = null,
   }) {
-    return _then(_$Value_ConnectionTypeImpl(
+    return _then(Value_ErrorValue(
       null == field0
-          ? _value.field0
+          ? _self.field0
           : field0 // ignore: cast_nullable_to_non_nullable
-              as ConnectionType,
+              as ErrorType,
       null == field1
-          ? _value.field1
+          ? _self.field1
           : field1 // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -791,24 +240,90 @@ class __$$Value_ConnectionTypeImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Value_ConnectionTypeImpl extends Value_ConnectionType {
-  const _$Value_ConnectionTypeImpl(this.field0, this.field1) : super._();
+class Value_Error extends Value {
+  const Value_Error(this.field0) : super._();
 
   @override
-  final ConnectionType field0;
-  @override
-  final String field1;
+  final ErrorType field0;
 
-  @override
-  String toString() {
-    return 'Value.connectionType(field0: $field0, field1: $field1)';
-  }
+  /// Create a copy of Value
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $Value_ErrorCopyWith<Value_Error> get copyWith =>
+      _$Value_ErrorCopyWithImpl<Value_Error>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$Value_ConnectionTypeImpl &&
+            other is Value_Error &&
+            (identical(other.field0, field0) || other.field0 == field0));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, field0);
+
+  @override
+  String toString() {
+    return 'Value.error(field0: $field0)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $Value_ErrorCopyWith<$Res>
+    implements $ValueCopyWith<$Res> {
+  factory $Value_ErrorCopyWith(
+          Value_Error value, $Res Function(Value_Error) _then) =
+      _$Value_ErrorCopyWithImpl;
+  @useResult
+  $Res call({ErrorType field0});
+}
+
+/// @nodoc
+class _$Value_ErrorCopyWithImpl<$Res> implements $Value_ErrorCopyWith<$Res> {
+  _$Value_ErrorCopyWithImpl(this._self, this._then);
+
+  final Value_Error _self;
+  final $Res Function(Value_Error) _then;
+
+  /// Create a copy of Value
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? field0 = null,
+  }) {
+    return _then(Value_Error(
+      null == field0
+          ? _self.field0
+          : field0 // ignore: cast_nullable_to_non_nullable
+              as ErrorType,
+    ));
+  }
+}
+
+/// @nodoc
+
+class Value_ConnectionType extends Value {
+  const Value_ConnectionType(this.field0, this.field1) : super._();
+
+  @override
+  final ConnectionType field0;
+  final String field1;
+
+  /// Create a copy of Value
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $Value_ConnectionTypeCopyWith<Value_ConnectionType> get copyWith =>
+      _$Value_ConnectionTypeCopyWithImpl<Value_ConnectionType>(
+          this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Value_ConnectionType &&
             (identical(other.field0, field0) || other.field0 == field0) &&
             (identical(other.field1, field1) || other.field1 == field1));
   }
@@ -816,111 +331,48 @@ class _$Value_ConnectionTypeImpl extends Value_ConnectionType {
   @override
   int get hashCode => Object.hash(runtimeType, field0, field1);
 
+  @override
+  String toString() {
+    return 'Value.connectionType(field0: $field0, field1: $field1)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $Value_ConnectionTypeCopyWith<$Res>
+    implements $ValueCopyWith<$Res> {
+  factory $Value_ConnectionTypeCopyWith(Value_ConnectionType value,
+          $Res Function(Value_ConnectionType) _then) =
+      _$Value_ConnectionTypeCopyWithImpl;
+  @useResult
+  $Res call({ConnectionType field0, String field1});
+}
+
+/// @nodoc
+class _$Value_ConnectionTypeCopyWithImpl<$Res>
+    implements $Value_ConnectionTypeCopyWith<$Res> {
+  _$Value_ConnectionTypeCopyWithImpl(this._self, this._then);
+
+  final Value_ConnectionType _self;
+  final $Res Function(Value_ConnectionType) _then;
+
   /// Create a copy of Value
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
   @pragma('vm:prefer-inline')
-  _$$Value_ConnectionTypeImplCopyWith<_$Value_ConnectionTypeImpl>
-      get copyWith =>
-          __$$Value_ConnectionTypeImplCopyWithImpl<_$Value_ConnectionTypeImpl>(
-              this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int field0) int,
-    required TResult Function(String field0) string,
-    required TResult Function(ErrorType field0, String field1) errorValue,
-    required TResult Function(ErrorType field0) error,
-    required TResult Function(ConnectionType field0, String field1)
-        connectionType,
+  $Res call({
+    Object? field0 = null,
+    Object? field1 = null,
   }) {
-    return connectionType(field0, field1);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int field0)? int,
-    TResult? Function(String field0)? string,
-    TResult? Function(ErrorType field0, String field1)? errorValue,
-    TResult? Function(ErrorType field0)? error,
-    TResult? Function(ConnectionType field0, String field1)? connectionType,
-  }) {
-    return connectionType?.call(field0, field1);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int field0)? int,
-    TResult Function(String field0)? string,
-    TResult Function(ErrorType field0, String field1)? errorValue,
-    TResult Function(ErrorType field0)? error,
-    TResult Function(ConnectionType field0, String field1)? connectionType,
-    required TResult orElse(),
-  }) {
-    if (connectionType != null) {
-      return connectionType(field0, field1);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Value_Int value) int,
-    required TResult Function(Value_String value) string,
-    required TResult Function(Value_ErrorValue value) errorValue,
-    required TResult Function(Value_Error value) error,
-    required TResult Function(Value_ConnectionType value) connectionType,
-  }) {
-    return connectionType(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Value_Int value)? int,
-    TResult? Function(Value_String value)? string,
-    TResult? Function(Value_ErrorValue value)? errorValue,
-    TResult? Function(Value_Error value)? error,
-    TResult? Function(Value_ConnectionType value)? connectionType,
-  }) {
-    return connectionType?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Value_Int value)? int,
-    TResult Function(Value_String value)? string,
-    TResult Function(Value_ErrorValue value)? errorValue,
-    TResult Function(Value_Error value)? error,
-    TResult Function(Value_ConnectionType value)? connectionType,
-    required TResult orElse(),
-  }) {
-    if (connectionType != null) {
-      return connectionType(this);
-    }
-    return orElse();
+    return _then(Value_ConnectionType(
+      null == field0
+          ? _self.field0
+          : field0 // ignore: cast_nullable_to_non_nullable
+              as ConnectionType,
+      null == field1
+          ? _self.field1
+          : field1 // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
-abstract class Value_ConnectionType extends Value {
-  const factory Value_ConnectionType(
-          final ConnectionType field0, final String field1) =
-      _$Value_ConnectionTypeImpl;
-  const Value_ConnectionType._() : super._();
-
-  @override
-  ConnectionType get field0;
-  String get field1;
-
-  /// Create a copy of Value
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$Value_ConnectionTypeImplCopyWith<_$Value_ConnectionTypeImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
+// dart format on

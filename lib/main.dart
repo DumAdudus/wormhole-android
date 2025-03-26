@@ -10,8 +10,10 @@ import 'settings/settings.dart';
 import 'theme/dark_theme.dart';
 import 'theme/light_theme.dart';
 import 'theme/theme_provider.dart';
+import 'utils/log.dart';
 
 void main() {
+  initLogging();
   runApp(const MyApp());
 }
 
@@ -58,7 +60,7 @@ class _MyAppState extends State<MyApp> {
                   .contains(deviceLocale?.languageCode)) {
                 return deviceLocale;
               }
-              debugPrint('fallback to default locale');
+              logger.config('fallback to default locale');
               return const Locale('en');
             },
             theme: lightTheme,

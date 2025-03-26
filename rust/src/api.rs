@@ -1,9 +1,11 @@
+use crate::frb_generated::StreamSink;
+use crate::wormhole::log::init_logger;
 /// Entrypoint of Wormhole Rust backend
 use crate::wormhole::receive::request_file_impl;
 use crate::wormhole::send::{send_file_impl, send_files_impl};
 use crate::wormhole::zip::list_dir;
-use crate::frb_generated::StreamSink;
 use futures::executor::block_on;
+use log::debug;
 use magic_wormhole::rendezvous::DEFAULT_RENDEZVOUS_SERVER;
 use magic_wormhole::{transit, Code};
 use std::cmp::Ordering;
@@ -26,6 +28,7 @@ static TEMP_FILE_PATH: Mutex<Option<String>> = Mutex::new(None);
 /// initialize backend api
 pub fn init(temp_file_path: String) {
     *TEMP_FILE_PATH.lock().unwrap() = Some(temp_file_path);
+    init_logger();
 }
 
 pub struct ServerConfig {
@@ -44,13 +47,14 @@ pub fn send_files(
 
     match file_paths.len().cmp(&1) {
         Ordering::Less => {
-            actions.add(TUpdate::new(
+            let _ = actions.add(TUpdate::new(
                 Events::Error,
                 Value::Error(ErrorType::InvalidFilename),
                 // todo proper error message
             ));
         }
         Ordering::Equal => {
+            debug!("lib sending file {} {}", file_paths[0], name);
             block_on(async {
                 send_file_impl(
                     name,
@@ -99,7 +103,7 @@ pub fn send_folder(
     let files = match list_dir(folder_path) {
         Ok(v) => v,
         Err(_) => {
-            actions.add(TUpdate::new(
+            let _ = actions.add(TUpdate::new(
                 Events::Error,
                 Value::Error(ErrorType::InvalidFilename),
                 // todo proper error message

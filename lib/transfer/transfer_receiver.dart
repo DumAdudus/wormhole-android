@@ -9,13 +9,14 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:share_handler/share_handler.dart';
 
-import '../rust/api.dart';
-import '../rust/wormhole/types/t_update.dart';
 import '../navigation/navigation_provider.dart';
 import '../pages/connecting_page.dart';
 import '../pages/toasts/error_toast.dart';
 import '../pages/transfer_widgets/transfer_finished.dart';
+import '../rust/api.dart';
+import '../rust/wormhole/types/t_update.dart';
 import '../settings/settings.dart';
+import '../utils/log.dart';
 import '../utils/paths.dart';
 import 'transfer_provider.dart';
 
@@ -45,6 +46,7 @@ class _TransferReceiverState extends State<TransferReceiver> {
   void _sendFiles(
       String name, List<String> filepaths, bool causedByIntent) async {
     final codeLength = (await Settings.getWordLength()) ?? Defaults.wordlength;
+    logger.config('Sending ${name}, ${filepaths} with length: ${codeLength}');
     final stream = sendFiles(
         name: name,
         filePaths: filepaths,
@@ -104,9 +106,10 @@ class _TransferReceiverState extends State<TransferReceiver> {
   }
 
   void _receiveFile(String passphrase) async {
+    logger.config('recieve file with code: ${passphrase}');
     final dpath = await getDownloadPath();
     if (dpath == null) {
-      debugPrint('no download path available');
+      logger.config('no download path available');
       return;
     }
 
@@ -118,7 +121,11 @@ class _TransferReceiverState extends State<TransferReceiver> {
           passphrase: passphrase,
           storageFolder: dpath,
           serverConfig: await _getServerConfig());
-      if (!mounted) return;
+      if (!mounted) {
+        logger.warning('target path not mounted');
+        return;
+      }
+      logger.info('save to ${dpath}');
       Provider.of<NavigationProvider>(context, listen: false).push(
         ConnectingPage(
           key: UniqueKey(),
@@ -128,6 +135,7 @@ class _TransferReceiverState extends State<TransferReceiver> {
       );
     } else {
       if (!mounted) return;
+      logger.warning('Insufficient Storage Permissions');
       ErrorToast(
               message: AppLocalizations.of(context)!
                   .transfer_error_storagepermission)
@@ -187,7 +195,7 @@ class _TransferReceiverState extends State<TransferReceiver> {
       return;
     }
 
-    debugPrint('sending file ${paths.toString()}');
+    logger.config('sending file ${paths.toString()}');
     _sendFiles(paths[0].split('/').last, paths, true);
   }
 

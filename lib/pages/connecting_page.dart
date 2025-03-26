@@ -1,14 +1,16 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 
-// import '../gen/ffi.dart' if (dart.library.html) 'ffi_web.dart';
-import '../rust/api.dart';
-import '../rust/wormhole/types/events.dart';
-import '../rust/wormhole/types/value.dart';
-import '../rust/wormhole/types/error_types.dart';
-import '../rust/wormhole/types/t_update.dart';
 import '../navigation/back_pop_context.dart';
 import '../navigation/disallow_pop_context.dart';
+// import '../gen/ffi.dart' if (dart.library.html) 'ffi_web.dart';
+import '../rust/api.dart';
+import '../rust/wormhole/types/error_types.dart';
+import '../rust/wormhole/types/events.dart';
+import '../rust/wormhole/types/t_update.dart';
+import '../rust/wormhole/types/value.dart';
+import '../utils/log.dart';
 import 'transfer_widgets/transfer_code.dart';
 import 'transfer_widgets/transfer_connecting.dart';
 import 'transfer_widgets/transfer_error.dart';
@@ -39,24 +41,30 @@ class _ConnectingPageState extends State<ConnectingPage> {
   void initState() {
     super.initState();
     controller.stream.listen((e) {
+      logger.config('stream event: ${e.event}');
       switch (e.event) {
         case Events.total:
           total = e.getValue();
+          logger.config('total size: ${total}');
           break;
         case Events.connectionType:
           connectionType = (e.value as Value_ConnectionType).field0;
           connectionTypeName = (e.value as Value_ConnectionType).field1;
+          logger.config('connectionType: ${connectionTypeName}');
           break;
         case Events.zipFilesTotal:
           totalFileNr = e.getValue();
+          logger.config('file count: ${totalFileNr}');
           break;
         default:
+          logger.config('unknown event: ${e.event}');
           break;
       }
     });
   }
 
   Widget _handleEvent(TUpdate event) {
+    logger.config('new event: ${event.event}');
     switch (event.event) {
       case Events.connecting:
         return const TransferConnecting();
