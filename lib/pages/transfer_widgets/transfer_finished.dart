@@ -17,33 +17,29 @@ class ReceiveFinished extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(
-            Icons.check_circle_outline,
-            color: Colors.green,
-            size: 60,
-          ),
+          const Icon(Icons.check_circle_outline, color: Colors.green, size: 60),
           Padding(
             padding: const EdgeInsets.only(top: 16),
             child: Text(AppLocalizations.of(context)!.transfer_finished_label),
           ),
-          const SizedBox(
-            height: 25,
-          ),
+          const SizedBox(height: 25),
           IconTextButton(
-              onClick: () {
-                OpenFilex.open(file);
-              },
-              text: AppLocalizations.of(context)!.transfer_finished_open,
-              icon: Icons.file_open_outlined),
-          const SizedBox(
-            height: 15,
+            onClick: () {
+              OpenFilex.open(file);
+            },
+            text: AppLocalizations.of(context)!.transfer_finished_open,
+            icon: Icons.file_open_outlined,
           ),
+          const SizedBox(height: 15),
           IconTextButton(
-              onClick: () {
-                Share.shareXFiles([XFile(file)], text: file.split('/').last);
-              },
-              text: AppLocalizations.of(context)!.transfer_finished_share,
-              icon: Icons.share),
+            onClick: () {
+              SharePlus.instance.share(
+                ShareParams(files: [XFile(file)], text: file.split('/').last),
+              );
+            },
+            text: AppLocalizations.of(context)!.transfer_finished_share,
+            icon: Icons.share,
+          ),
         ],
       ),
     );

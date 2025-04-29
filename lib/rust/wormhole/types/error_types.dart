@@ -30,5 +30,4 @@ enum ErrorType {
 
   /// error creating zip temp file
   zipFileError,
-  ;
 }

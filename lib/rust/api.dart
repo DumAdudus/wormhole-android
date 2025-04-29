@@ -15,41 +15,47 @@ import 'wormhole/types/value.dart';
 Future<void> init({required String tempFilePath}) =>
     RustLib.instance.api.crateApiInit(tempFilePath: tempFilePath);
 
-Stream<TUpdate> sendFiles(
-        {required List<String> filePaths,
-        required String name,
-        required int codeLength,
-        required ServerConfig serverConfig}) =>
-    RustLib.instance.api.crateApiSendFiles(
-        filePaths: filePaths,
-        name: name,
-        codeLength: codeLength,
-        serverConfig: serverConfig);
+Stream<TUpdate> sendFiles({
+  required List<String> filePaths,
+  required String name,
+  required int codeLength,
+  required ServerConfig serverConfig,
+}) => RustLib.instance.api.crateApiSendFiles(
+  filePaths: filePaths,
+  name: name,
+  codeLength: codeLength,
+  serverConfig: serverConfig,
+);
 
-Stream<TUpdate> sendFolder(
-        {required String folderPath,
-        required String name,
-        required int codeLength,
-        required ServerConfig serverConfig}) =>
-    RustLib.instance.api.crateApiSendFolder(
-        folderPath: folderPath,
-        name: name,
-        codeLength: codeLength,
-        serverConfig: serverConfig);
+Stream<TUpdate> sendFolder({
+  required String folderPath,
+  required String name,
+  required int codeLength,
+  required ServerConfig serverConfig,
+}) => RustLib.instance.api.crateApiSendFolder(
+  folderPath: folderPath,
+  name: name,
+  codeLength: codeLength,
+  serverConfig: serverConfig,
+);
 
-Stream<TUpdate> requestFile(
-        {required String passphrase,
-        required String storageFolder,
-        required ServerConfig serverConfig}) =>
-    RustLib.instance.api.crateApiRequestFile(
-        passphrase: passphrase,
-        storageFolder: storageFolder,
-        serverConfig: serverConfig);
+Stream<TUpdate> requestFile({
+  required String passphrase,
+  required String storageFolder,
+  required ServerConfig serverConfig,
+}) => RustLib.instance.api.crateApiRequestFile(
+  passphrase: passphrase,
+  storageFolder: storageFolder,
+  serverConfig: serverConfig,
+);
 
-Future<String> getPassphraseUri(
-        {required String passphrase, String? rendezvousServer}) =>
-    RustLib.instance.api.crateApiGetPassphraseUri(
-        passphrase: passphrase, rendezvousServer: rendezvousServer);
+Future<String> getPassphraseUri({
+  required String passphrase,
+  String? rendezvousServer,
+}) => RustLib.instance.api.crateApiGetPassphraseUri(
+  passphrase: passphrase,
+  rendezvousServer: rendezvousServer,
+);
 
 Future<BuildInfo> getBuildTime() => RustLib.instance.api.crateApiGetBuildTime();
 
@@ -63,10 +69,7 @@ class ServerConfig {
   final String rendezvousUrl;
   final String transitUrl;
 
-  const ServerConfig({
-    required this.rendezvousUrl,
-    required this.transitUrl,
-  });
+  const ServerConfig({required this.rendezvousUrl, required this.transitUrl});
 
   @override
   int get hashCode => rendezvousUrl.hashCode ^ transitUrl.hashCode;

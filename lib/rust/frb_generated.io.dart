@@ -85,7 +85,8 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   RustStreamSink<TUpdate> sse_decode_StreamSink_t_update_Sse(
-      SseDeserializer deserializer);
+    SseDeserializer deserializer,
+  );
 
   @protected
   String sse_decode_String(SseDeserializer deserializer);
@@ -95,7 +96,8 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   ServerConfig sse_decode_box_autoadd_server_config(
-      SseDeserializer deserializer);
+    SseDeserializer deserializer,
+  );
 
   @protected
   BuildInfo sse_decode_build_info(SseDeserializer deserializer);
@@ -141,11 +143,15 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void sse_encode_AnyhowException(
-      AnyhowException self, SseSerializer serializer);
+    AnyhowException self,
+    SseSerializer serializer,
+  );
 
   @protected
   void sse_encode_StreamSink_t_update_Sse(
-      RustStreamSink<TUpdate> self, SseSerializer serializer);
+    RustStreamSink<TUpdate> self,
+    SseSerializer serializer,
+  );
 
   @protected
   void sse_encode_String(String self, SseSerializer serializer);
@@ -155,14 +161,18 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void sse_encode_box_autoadd_server_config(
-      ServerConfig self, SseSerializer serializer);
+    ServerConfig self,
+    SseSerializer serializer,
+  );
 
   @protected
   void sse_encode_build_info(BuildInfo self, SseSerializer serializer);
 
   @protected
   void sse_encode_connection_type(
-      ConnectionType self, SseSerializer serializer);
+    ConnectionType self,
+    SseSerializer serializer,
+  );
 
   @protected
   void sse_encode_error_type(ErrorType self, SseSerializer serializer);
@@ -178,7 +188,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void sse_encode_list_prim_u_8_strict(
-      Uint8List self, SseSerializer serializer);
+    Uint8List self,
+    SseSerializer serializer,
+  );
 
   @protected
   void sse_encode_opt_String(String? self, SseSerializer serializer);
@@ -210,9 +222,9 @@ class RustLibWire implements BaseWire {
 
   /// Holds the symbol lookup function.
   final ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName)
-      _lookup;
+  _lookup;
 
   /// The symbols are looked up in [dynamicLibrary].
   RustLibWire(ffi.DynamicLibrary dynamicLibrary)
-      : _lookup = dynamicLibrary.lookup;
+    : _lookup = dynamicLibrary.lookup;
 }

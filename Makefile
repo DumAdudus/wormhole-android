@@ -1,5 +1,5 @@
 apk: translation
-	# cd android && ./gradlew wrapper --gradle-version=8.12.1
+	# cd android && ./gradlew wrapper --gradle-version=8.14
 	# flutter doctor -v
 	flutter build apk --target-platform android-arm64 --split-per-abi --release 
 
@@ -8,7 +8,8 @@ container-apk:
 		--mount type=bind,source=${PWD},target=/root/wormhole/ \
 		-v gradle-cache:/root/.gradle \
 		-v flutter-cache:/root/.pub-cache \
-		flutter-rust:0319 \
+		-v cargo-cache:/root/.cargo \
+		flutter-rust:0430 \
 		bash -c "cd /root/wormhole && make clean apk"
 
 linux: translation
@@ -31,12 +32,11 @@ format:
 	dart format .
 
 lint:
-	cd native && cargo clippy
+	cd rust && cargo clippy
 	flutter analyze .
 
 clean:
 	flutter clean
-	# cd native && cargo clean
 
 .PHONY: all apk linux get-dep codegen lint clean
 

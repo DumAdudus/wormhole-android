@@ -36,5 +36,4 @@ enum Events {
 
   /// number of already zipped files
   zipFiles,
-  ;
 }

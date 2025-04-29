@@ -13,10 +13,7 @@ class TUpdate {
   final Events event;
   final Value value;
 
-  const TUpdate({
-    required this.event,
-    required this.value,
-  });
+  const TUpdate({required this.event, required this.value});
 
   @override
   int get hashCode => event.hashCode ^ value.hashCode;
