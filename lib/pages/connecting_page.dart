@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:vibration/vibration.dart';
 
 import '../navigation/back_pop_context.dart';
 import '../navigation/disallow_pop_context.dart';
@@ -69,38 +70,36 @@ class _ConnectingPageState extends State<ConnectingPage> {
       case Events.connecting:
         return const TransferConnecting();
       case Events.code:
-        return BackPopContext(
-          child: TransferCode(
-            data: event,
-          ),
-        );
+        return BackPopContext(child: TransferCode(data: event));
       case Events.startTransfer:
       case Events.connectionType:
       case Events.total:
       case Events.sent:
         return DisallowPopContext(
           child: TransferProgress(
-              data: event,
-              total: total,
-              linkType: connectionType,
-              linkName: connectionTypeName),
+            data: event,
+            total: total,
+            linkType: connectionType,
+            linkName: connectionTypeName,
+          ),
         );
       case Events.error:
         return BackPopContext(
-            child: TransferError(
-                error: event.value.field0 as ErrorType,
-                message: event.value is Value_ErrorValue
+          child: TransferError(
+            error: event.value.field0 as ErrorType,
+            message:
+                event.value is Value_ErrorValue
                     ? (event.value as Value_ErrorValue).field1
-                    : null));
+                    : null,
+          ),
+        );
       case Events.finished:
+        Vibration.vibrate();
         return BackPopContext(child: widget.finish(event.getValue()));
       case Events.zipFilesTotal:
       case Events.zipFiles:
         return DisallowPopContext(
-          child: TransferZipProgress(
-            data: event,
-            totalFileNr: totalFileNr,
-          ),
+          child: TransferZipProgress(data: event, totalFileNr: totalFileNr),
         );
     }
   }
@@ -119,10 +118,11 @@ class _ConnectingPageState extends State<ConnectingPage> {
             return _handleEvent(d);
           case ConnectionState.done:
             return const BackPopContext(
-                child: TransferError(
-              error: ErrorType.connectionError,
-              message: 'Connection Stream closed',
-            ));
+              child: TransferError(
+                error: ErrorType.connectionError,
+                message: 'Connection Stream closed',
+              ),
+            );
         }
       },
       stream: controller.stream,
