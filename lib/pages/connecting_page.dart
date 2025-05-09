@@ -6,7 +6,6 @@ import 'package:vibration/vibration.dart';
 import '../navigation/back_pop_context.dart';
 import '../navigation/disallow_pop_context.dart';
 // import '../gen/ffi.dart' if (dart.library.html) 'ffi_web.dart';
-import '../rust/api.dart';
 import '../rust/wormhole/types/error_types.dart';
 import '../rust/wormhole/types/events.dart';
 import '../rust/wormhole/types/t_update.dart';
@@ -46,16 +45,16 @@ class _ConnectingPageState extends State<ConnectingPage> {
       switch (e.event) {
         case Events.total:
           total = e.getValue();
-          logger.config('total size: ${total}');
+          logger.config('total size: $total');
           break;
         case Events.connectionType:
           connectionType = (e.value as Value_ConnectionType).field0;
           connectionTypeName = (e.value as Value_ConnectionType).field1;
-          logger.config('connectionType: ${connectionTypeName}');
+          logger.config('connectionType: $connectionTypeName');
           break;
         case Events.zipFilesTotal:
           totalFileNr = e.getValue();
-          logger.config('file count: ${totalFileNr}');
+          logger.config('file count: $totalFileNr');
           break;
         default:
           logger.config('unknown event: ${e.event}');

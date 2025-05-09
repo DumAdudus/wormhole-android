@@ -36,29 +36,35 @@ class _TransferReceiverState extends State<TransferReceiver> {
     final codeLength = (await Settings.getWordLength()) ?? Defaults.wordlength;
 
     final stream = sendFolder(
-        folderPath: path,
-        name: name,
-        codeLength: codeLength,
-        serverConfig: await _getServerConfig());
+      folderPath: path,
+      name: name,
+      codeLength: codeLength,
+      serverConfig: await _getServerConfig(),
+    );
     _showConnectionPage(stream, causedByIntent);
   }
 
   void _sendFiles(
-      String name, List<String> filepaths, bool causedByIntent) async {
+    String name,
+    List<String> filepaths,
+    bool causedByIntent,
+  ) async {
     final codeLength = (await Settings.getWordLength()) ?? Defaults.wordlength;
-    logger.config('Sending ${name}, ${filepaths} with length: ${codeLength}');
+    logger.config('Sending $name, $filepaths with length: $codeLength');
     final stream = sendFiles(
-        name: name,
-        filePaths: filepaths,
-        codeLength: codeLength,
-        serverConfig: await _getServerConfig());
+      name: name,
+      filePaths: filepaths,
+      codeLength: codeLength,
+      serverConfig: await _getServerConfig(),
+    );
 
     _showConnectionPage(stream, causedByIntent);
   }
 
   void _showConnectionPage(Stream<TUpdate> stream, bool causedByIntent) {
     if (!mounted) return;
-    Provider.of<NavigationProvider>(context, listen: false).push(ConnectingPage(
+    Provider.of<NavigationProvider>(context, listen: false).push(
+      ConnectingPage(
         key: UniqueKey(),
         stream: stream,
         finish: (file) {
@@ -77,22 +83,26 @@ class _TransferReceiverState extends State<TransferReceiver> {
 
           return Center(
             child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(
-                    Icons.check_circle_outline,
-                    color: Colors.green,
-                    size: 60,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(
+                  Icons.check_circle_outline,
+                  color: Colors.green,
+                  size: 60,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 16),
+                  child: Text(
+                    AppLocalizations.of(context)!.transfer_finished_send_label,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16),
-                    child: Text(AppLocalizations.of(context)!
-                        .transfer_finished_send_label),
-                  ),
-                ]),
+                ),
+              ],
+            ),
           );
-        }));
+        },
+      ),
+    );
   }
 
   Future<ServerConfig> _getServerConfig() async {
@@ -100,13 +110,15 @@ class _TransferReceiverState extends State<TransferReceiver> {
         (await Settings.getRendezvousUrl()) ?? await defaultRendezvousUrl();
     final transitUrl =
         (await Settings.getTransitUrl()) ?? await defaultTransitUrl();
-    final serverConfig =
-        ServerConfig(rendezvousUrl: rendezvousUrl, transitUrl: transitUrl);
+    final serverConfig = ServerConfig(
+      rendezvousUrl: rendezvousUrl,
+      transitUrl: transitUrl,
+    );
     return serverConfig;
   }
 
   void _receiveFile(String passphrase) async {
-    logger.config('recieve file with code: ${passphrase}');
+    logger.config('recieve file with code: $passphrase');
     final dpath = await getDownloadPath();
     if (dpath == null) {
       logger.config('no download path available');
@@ -118,14 +130,15 @@ class _TransferReceiverState extends State<TransferReceiver> {
         (await DeviceInfoPlugin().androidInfo).version.sdkInt >= 33 ||
         await Permission.storage.request().isGranted) {
       final s = requestFile(
-          passphrase: passphrase,
-          storageFolder: dpath,
-          serverConfig: await _getServerConfig());
+        passphrase: passphrase,
+        storageFolder: dpath,
+        serverConfig: await _getServerConfig(),
+      );
       if (!mounted) {
         logger.warning('target path not mounted');
         return;
       }
-      logger.info('save to ${dpath}');
+      logger.info('save to $dpath');
       Provider.of<NavigationProvider>(context, listen: false).push(
         ConnectingPage(
           key: UniqueKey(),
@@ -137,9 +150,8 @@ class _TransferReceiverState extends State<TransferReceiver> {
       if (!mounted) return;
       logger.warning('Insufficient Storage Permissions');
       ErrorToast(
-              message: AppLocalizations.of(context)!
-                  .transfer_error_storagepermission)
-          .show(context);
+        message: AppLocalizations.of(context)!.transfer_error_storagepermission,
+      ).show(context);
     }
   }
 

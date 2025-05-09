@@ -10,23 +10,24 @@ plugins {
 
 android {
     namespace = "dumadudus.wormhole"
-    compileSdk = 35 // flutter.compileSdkVersion
-    ndkVersion = "27.2.12479018" // flutter.ndkVersion
-    val jreVer = JavaVersion.VERSION_1_8
+    ndkVersion = "27.2.12479018"
+    compileSdk = 35
+    var minSdkVer = 29
+    val javaVer = JavaVersion.VERSION_21
 
     compileOptions {
-        sourceCompatibility = jreVer
-        targetCompatibility = jreVer
+        sourceCompatibility = javaVer
+        targetCompatibility = javaVer
     }
 
     kotlinOptions {
-        jvmTarget = jreVer.toString()
+        jvmTarget = javaVer.toString()
     }
 
     defaultConfig {
         applicationId = "dumadudus.wormhole"
-        minSdk = 29 // flutter.minSdkVersion
-        targetSdk = 35 // flutter.targetSdkVersion
+        minSdk = minSdkVer
+        targetSdk = compileSdk
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
