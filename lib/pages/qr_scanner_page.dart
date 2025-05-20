@@ -26,21 +26,25 @@ class QrScannerPage extends StatelessWidget {
         final passphrase = uri.path;
 
         if (isCodeValid(passphrase)) {
-          Provider.of<TransferProvider>(context, listen: false)
-              .receiveFile(passphrase);
+          Provider.of<TransferProvider>(
+            context,
+            listen: false,
+          ).receiveFile(passphrase);
           return;
         }
         // todo handle extra query parameters
       }
 
       Provider.of<NavigationProvider>(context, listen: false).pop();
-      ErrorToast(message: AppLocalizations.of(context)!.toast_error_qr_invalid)
-          .show(context);
+      ErrorToast(
+        message: AppLocalizations.of(context)!.toast_error_qr_invalid,
+      ).show(context);
     } else {
       logger.warning('Failed to scan Barcode');
       Provider.of<NavigationProvider>(context, listen: false).pop();
-      ErrorToast(message: AppLocalizations.of(context)!.toast_error_qr_fail)
-          .show(context);
+      ErrorToast(
+        message: AppLocalizations.of(context)!.toast_error_qr_fail,
+      ).show(context);
     }
   }
 
@@ -48,7 +52,8 @@ class QrScannerPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BackPopContext(
       child: ReaderWidget(
-        tryInverted: true,
+        codeFormat: Format.qrCode,
+        // tryInverted: true,
         showGallery: false,
         showFlashlight: false,
         showToggleCamera: false,

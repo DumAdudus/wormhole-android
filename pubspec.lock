@@ -309,10 +309,10 @@ packages:
     dependency: "direct dev"
     description:
       name: ffigen
-      sha256: "72d732c33557fc0ca9b46379d3deff2dadbdc539696dc0b270189e2989be20ef"
+      sha256: cb3edbfb68ac5283102a2deb7057913d3a1fb16552dacda0c07eb144497e4891
       url: "https://pub.dev"
     source: hosted
-    version: "18.1.0"
+    version: "19.0.0"
   file:
     dependency: transitive
     description:
@@ -325,10 +325,10 @@ packages:
     dependency: "direct main"
     description:
       name: file_picker
-      sha256: "978be1f602e0695daef8e345a3c597abf72b0c0ca6102fa2665eb549f5406a17"
+      sha256: "77f8e81d22d2a07d0dee2c62e1dda71dc1da73bf43bb2d45af09727406167964"
       url: "https://pub.dev"
     source: hosted
-    version: "10.1.5"
+    version: "10.1.9"
   file_selector_linux:
     dependency: transitive
     description:
@@ -432,10 +432,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_rust_bridge
-      sha256: "5a5c7a5deeef2cc2ffe6076a33b0429f4a20ceac22a397297aed2b1eb067e611"
+      sha256: b416ff56002789e636244fb4cc449f587656eff995e5a7169457eb0593fcaddb
       url: "https://pub.dev"
     source: hosted
-    version: "2.9.0"
+    version: "2.10.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -1364,4 +1364,4 @@ packages:
     version: "2.2.2"
 sdks:
   dart: ">=3.7.2 <4.0.0"
-  flutter: ">=3.29.0"
+  flutter: ">=3.29.3"
